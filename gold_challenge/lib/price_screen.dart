@@ -90,10 +90,25 @@ class _PriceScreenState extends State<PriceScreen> {
           //TODO 1: Refactor this Padding Widget into a separate Stateless Widget called CryptoCard, so we can create 3 of them, one for each cryptocurrency.
           //TODO 2: You'll need to able to pass the selectedCurrency, value and cryptoCurrency to the constructor of this CryptoCard Widget.
           //TODO 3: You'll need to use a Column Widget to contain the three CryptoCards.
-          CryptoCard(
-            value: value,
-            selectedCurrency: selectedCurrency,
-            cryptoCurrency: cryptoCurrency,
+          Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              CryptoCard(
+                value: value,
+                selectedCurrency: selectedCurrency,
+                cryptoCurrency: cryptoCurrency,
+              ),
+              CryptoCard(
+                value: value,
+                selectedCurrency: selectedCurrency,
+                cryptoCurrency: cryptoCurrency,
+              ),
+              CryptoCard(
+                value: value,
+                selectedCurrency: selectedCurrency,
+                cryptoCurrency: cryptoCurrency,
+              ),
+            ],
           ),
           Container(
             height: 150.0,
