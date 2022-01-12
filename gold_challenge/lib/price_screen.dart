@@ -10,6 +10,7 @@ class PriceScreen extends StatefulWidget {
 
 class _PriceScreenState extends State<PriceScreen> {
   String selectedCurrency = 'AUD';
+  String cryptoCurrency;
 
   DropdownButton<String> androidDropdown() {
     List<DropdownMenuItem<String>> dropdownItems = [];
@@ -89,7 +90,11 @@ class _PriceScreenState extends State<PriceScreen> {
           //TODO 1: Refactor this Padding Widget into a separate Stateless Widget called CryptoCard, so we can create 3 of them, one for each cryptocurrency.
           //TODO 2: You'll need to able to pass the selectedCurrency, value and cryptoCurrency to the constructor of this CryptoCard Widget.
           //TODO 3: You'll need to use a Column Widget to contain the three CryptoCards.
-          CryptoCard(value: value, selectedCurrency: selectedCurrency),
+          CryptoCard(
+            value: value,
+            selectedCurrency: selectedCurrency,
+            cryptoCurrency: cryptoCurrency,
+          ),
           Container(
             height: 150.0,
             alignment: Alignment.center,
@@ -105,13 +110,14 @@ class _PriceScreenState extends State<PriceScreen> {
 
 class CryptoCard extends StatelessWidget {
   const CryptoCard({
-    Key key,
     @required this.value,
     @required this.selectedCurrency,
-  }) : super(key: key);
+    @required this.cryptoCurrency,
+  });
 
   final String value;
   final String selectedCurrency;
+  final String cryptoCurrency;
 
   @override
   Widget build(BuildContext context) {
@@ -126,7 +132,7 @@ class CryptoCard extends StatelessWidget {
         child: Padding(
           padding: EdgeInsets.symmetric(vertical: 15.0, horizontal: 28.0),
           child: Text(
-            '1 BTC = $value $selectedCurrency',
+            '1 $cryptoCurrency = $value $selectedCurrency',
             textAlign: TextAlign.center,
             style: TextStyle(
               fontSize: 20.0,
