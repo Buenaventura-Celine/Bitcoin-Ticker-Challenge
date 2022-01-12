@@ -53,16 +53,21 @@ class _PriceScreenState extends State<PriceScreen> {
     );
   }
 
-  String value = '?';
+  String BTCvalue = '?';
+  String ETHvalue = '?';
+  String LTCvalue = '?';
 
   //TODO 7: Figure out a way of displaying a '?' on screen while we're waiting for the price data to come back. Hint: You'll need a ternary operator.
 
   //TODO 6: Update this method to receive a Map containing the crypto:price key value pairs. Then use that map to update the CryptoCards.
   void getData() async {
     try {
-      double data = await CoinData().getCoinData(selectedCurrency);
+      var data = await CoinData().getCoinData(selectedCurrency);
+
       setState(() {
-        value = data.toStringAsFixed(0);
+        BTCvalue = data['BTC'].toStringAsFixed(0);
+        ETHvalue = data['ETH'].toStringAsFixed(0);
+        LTCvalue = data['LTC'].toStringAsFixed(0);
       });
     } catch (e) {
       print(e);
@@ -94,19 +99,19 @@ class _PriceScreenState extends State<PriceScreen> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               CryptoCard(
-                value: value,
+                value: BTCvalue,
                 selectedCurrency: selectedCurrency,
-                cryptoCurrency: cryptoCurrency,
+                cryptoCurrency: 'BTC',
               ),
               CryptoCard(
-                value: value,
+                value: ETHvalue,
                 selectedCurrency: selectedCurrency,
-                cryptoCurrency: cryptoCurrency,
+                cryptoCurrency: 'ETH',
               ),
               CryptoCard(
-                value: value,
+                value: LTCvalue,
                 selectedCurrency: selectedCurrency,
-                cryptoCurrency: cryptoCurrency,
+                cryptoCurrency: 'LTC',
               ),
             ],
           ),
