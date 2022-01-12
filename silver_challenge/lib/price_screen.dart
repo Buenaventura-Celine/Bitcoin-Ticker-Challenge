@@ -10,7 +10,7 @@ class PriceScreen extends StatefulWidget {
 
 class _PriceScreenState extends State<PriceScreen> {
   //TODO 6: Update the default currency to AUD, the first item in the currencyList.
-  String selectedCurrency = 'USD';
+  String selectedCurrency = 'AUD';
 
   DropdownButton<String> androidDropdown() {
     List<DropdownMenuItem<String>> dropdownItems = [];
