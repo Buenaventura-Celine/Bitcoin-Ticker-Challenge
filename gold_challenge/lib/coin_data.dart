@@ -32,7 +32,7 @@ const List<String> cryptoList = [
 ];
 
 const coinAPIURL = 'https://rest.coinapi.io/v1/exchangerate';
-const apiKey = 'YOUR-API-KEY-HERE';
+const apiKey = '45EA5360-A444-4056-B3F0-491AB005156D';
 
 class CoinData {
   Future<Map> getCoinData(String selectedCurrency) async {
@@ -41,7 +41,8 @@ class CoinData {
     Map<String, double> exchangeRates = {};
     for (String crypto in cryptoList) {
       double lastPrice;
-      String requestURL = '$coinAPIURL/$crypto/$selectedCurrency';
+      String requestURL =
+          '$coinAPIURL/$crypto/$selectedCurrency?apikey=$apiKey';
       http.Response response = await http.get(requestURL);
       if (response.statusCode == 200) {
         var decodedData = jsonDecode(response.body);
