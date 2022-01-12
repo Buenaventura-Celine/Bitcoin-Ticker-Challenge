@@ -10,6 +10,8 @@ class PriceScreen extends StatefulWidget {
 
 class _PriceScreenState extends State<PriceScreen> {
   String selectedCurrency = 'USD';
+  CoinData coinData = CoinData();
+  String btcToUSDRate;
 
   DropdownButton<String> androidDropdown() {
     List<DropdownMenuItem<String>> dropdownItems = [];
@@ -49,6 +51,19 @@ class _PriceScreenState extends State<PriceScreen> {
   }
 
   //TODO: Create a method here called getData() to get the coin data from coin_data.dart
+  void getData() async {
+    try {
+      var data = await coinData.getCoinData();
+      setState(() {
+        double rate = data['rate'];
+        int btcToUSDRateInt = rate.toInt();
+        btcToUSDRate = btcToUSDRateInt.toString();
+        print(btcToUSDRate);
+      });
+    } catch (e) {
+      btcToUSDRate = e;
+    }
+  }
 
   @override
   void initState() {
