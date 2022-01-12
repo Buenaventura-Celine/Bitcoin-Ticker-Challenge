@@ -57,7 +57,7 @@ class _PriceScreenState extends State<PriceScreen> {
 
   void getData() async {
     try {
-      double data = await CoinData().getCoinData();
+      double data = await CoinData().getCoinData(selectedCurrency);
       setState(() {
         bitcoinValue = data.toStringAsFixed(0);
       });
