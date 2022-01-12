@@ -81,6 +81,29 @@ class _PriceScreenState extends State<PriceScreen> {
   }
 
   //TODO: For bonus points, create a method that loops through the cryptoList and generates a CryptoCard for each.
+  Column cryptoCardList() {
+    List<Widget> cryptoCards = [];
+    for (String crypto in cryptoList) {
+      var value;
+      if (crypto == 'BTC') {
+        value = BTCvalue;
+      } else if (crypto == 'ETH') {
+        value = ETHvalue;
+      } else if (crypto == 'LTC') {
+        value = LTCvalue;
+      }
+      var newItem = CryptoCard(
+        value: value,
+        selectedCurrency: selectedCurrency,
+        cryptoCurrency: crypto,
+      );
+      cryptoCards.add(newItem);
+    }
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.stretch,
+      children: cryptoCards,
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -95,26 +118,7 @@ class _PriceScreenState extends State<PriceScreen> {
           //TODO 1: Refactor this Padding Widget into a separate Stateless Widget called CryptoCard, so we can create 3 of them, one for each cryptocurrency.
           //TODO 2: You'll need to able to pass the selectedCurrency, value and cryptoCurrency to the constructor of this CryptoCard Widget.
           //TODO 3: You'll need to use a Column Widget to contain the three CryptoCards.
-          Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              CryptoCard(
-                value: BTCvalue,
-                selectedCurrency: selectedCurrency,
-                cryptoCurrency: 'BTC',
-              ),
-              CryptoCard(
-                value: ETHvalue,
-                selectedCurrency: selectedCurrency,
-                cryptoCurrency: 'ETH',
-              ),
-              CryptoCard(
-                value: LTCvalue,
-                selectedCurrency: selectedCurrency,
-                cryptoCurrency: 'LTC',
-              ),
-            ],
-          ),
+          cryptoCardList(),
           Container(
             height: 150.0,
             alignment: Alignment.center,
