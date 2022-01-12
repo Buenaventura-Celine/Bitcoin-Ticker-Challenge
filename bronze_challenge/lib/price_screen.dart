@@ -69,6 +69,7 @@ class _PriceScreenState extends State<PriceScreen> {
   void initState() {
     super.initState();
     //TODO: Call getData() when the screen loads up.
+    getData();
   }
 
   @override
